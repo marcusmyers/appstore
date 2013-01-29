@@ -32,10 +32,12 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('home.index');
-});
+Route::controller(Controller::detect());
+
+// Route::get('/', function()
+// {
+// 	return View::make('home.index');
+// });
 
 /*
 |--------------------------------------------------------------------------
@@ -107,5 +109,9 @@ Route::filter('csrf', function()
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to('login');
+	if (Auth::guest()) return Redirect::to('home');
+});
+
+Route::filter('noauth', function(){
+	if(Auth::guest() == false) return Redirect::to('dashboard');
 });

@@ -32,6 +32,7 @@ class Home_Controller extends Base_Controller {
 
 	public function action_index()
 	{
+		Asset::add('login', 'css/login.css');		
 		return View::make('home.index');
 	}
 
